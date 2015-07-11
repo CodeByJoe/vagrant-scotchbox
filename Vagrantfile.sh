@@ -1,7 +1,7 @@
-##################################################
-DO NOT MODIFY. THIS FILE IS FOR ENVIRONMENT CONFIG
-ADD YOUR PROJECT SPECIFIC COMMANDS TO BOOTSTRAP.SH
-##################################################
+######################################################
+# DO NOT MODIFY. THIS FILE IS FOR ENVIRONMENT CONFIG #
+# ADD YOUR PROJECT SPECIFIC COMMANDS TO BOOTSTRAP.SH #
+######################################################
 
 # stop services
 apachectl stop
