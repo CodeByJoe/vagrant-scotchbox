@@ -3,6 +3,10 @@
 # ADD YOUR PROJECT SPECIFIC COMMANDS TO BOOTSTRAP.SH #
 ######################################################
 
+# install services
+apt-get update
+apt-get install -y php5-xdebug
+
 # stop services
 apachectl stop
 service mysql stop
@@ -28,6 +32,15 @@ sed -i 's/INNODB_SETTINGS_PLACEHOLDER/innodb_log_buffer_size = 32M\nINNODB_SETTI
 sed -i 's/INNODB_SETTINGS_PLACEHOLDER/innodb_buffer_pool_size = 256M\nINNODB_SETTINGS_PLACEHOLDER/' /etc/mysql/my.cnf
 sed -i 's/INNODB_SETTINGS_PLACEHOLDER//' /etc/mysql/my.cnf
 rm -rf /var/lib/mysql/ib_logfile*
+
+# configure xdebug
+sed -i 's/zend_extension=xdebug.so/zend_extension = xdebug.so\nXDEBUG_SETTINGS_PLACEHOLDER/' /etc/php5/mods-available/xdebug.ini
+sed -i 's/XDEBUG_SETTINGS_PLACEHOLDER/xdebug.remote_enable = On\nXDEBUG_SETTINGS_PLACEHOLDER/' /etc/php5/mods-available/xdebug.ini
+sed -i 's/XDEBUG_SETTINGS_PLACEHOLDER/xdebug.remote_connect_back = On\nXDEBUG_SETTINGS_PLACEHOLDER/' /etc/php5/mods-available/xdebug.ini
+sed -i 's/XDEBUG_SETTINGS_PLACEHOLDER/xdebug.remote_port = 10001\nXDEBUG_SETTINGS_PLACEHOLDER/' /etc/php5/mods-available/xdebug.ini
+sed -i 's/XDEBUG_SETTINGS_PLACEHOLDER/xdebug.idekey = "PHPSTORM"\nXDEBUG_SETTINGS_PLACEHOLDER/' /etc/php5/mods-available/xdebug.ini
+sed -i 's/XDEBUG_SETTINGS_PLACEHOLDER/xdebug.max_nesting_level = 500\nXDEBUG_SETTINGS_PLACEHOLDER/' /etc/php5/mods-available/xdebug.ini
+sed -i 's/XDEBUG_SETTINGS_PLACEHOLDER//' /etc/php5/mods-available/xdebug.ini
 
 # restart services
 apachectl start
